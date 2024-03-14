@@ -22,7 +22,6 @@ setUser({...user,[e.target.name]:e.target.value})
 const handleClick=()=>{
   if(user?.password&&user?.email){
   dispatch(login(user))
-  
 }
 
 

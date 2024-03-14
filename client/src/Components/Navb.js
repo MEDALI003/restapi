@@ -33,6 +33,7 @@ function Navb() {
             
             <Button onClick={handlelogout} style={style}>Logout</Button>
 <div style={conn?{display:"none"}:{display:"flex"}}> <Link to={"/register"} ><Button>register</Button></Link><Link to={"/login"}><Button>login</Button></Link></div>
+            <Link to={"/profile"}><Button>profile</Button></Link>            
             <NavDropdown title="Dropdown" id="basic-nav-dropdown">
               <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
               <NavDropdown.Item href="#action/3.2">

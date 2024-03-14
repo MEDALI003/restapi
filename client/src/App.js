@@ -11,6 +11,7 @@ import Profile from './Pages/Profile/Profile';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { current } from './JS/Actions/userActions';
+import Error from './Components/Error';
 function App() {
   const dispatch=useDispatch()
   const user=useSelector(state=>state.userReducer.user)
@@ -18,18 +19,16 @@ function App() {
   const fix=0
   useEffect(()=>{
     dispatch(current())
-   if(user){
-    Navigate("/profile")
-   }
   },[fix,dispatch])
   return (
     <div className="App">
     <Navb />
     <Routes>
       <Route path='/' element={<Home />} />
-      <Route path='/login' element={<Login />} />
+      {<Route path='/login' element={<Login />} />}
       <Route path='/Register' element={<Register />} />
-      <Route path='/profile' element={<Profile />} />
+      {user?<Route path='/profile' element={<Profile />} />:null}
+      
  
     </Routes>
 

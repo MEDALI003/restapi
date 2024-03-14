@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { register } from '../../JS/Actions/userActions'
 import Button from 'react-bootstrap/esm/Button'
@@ -10,7 +10,12 @@ const Register = () => {
     const dispatch=useDispatch()
     const Navigate=useNavigate()
     const [user,setUser]=useState({})
-    
+    const conn=useSelector(state=>state.userReducer.user)
+useEffect(()=>{
+  if (conn!==null) {
+    Navigate("/profile")
+  }
+},[conn])
     const handleChange=(e)=>{
         setUser({...user,[e.target.name]:e.target.value})
       
