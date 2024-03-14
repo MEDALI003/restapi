@@ -1,5 +1,5 @@
 import { toast } from "react-toastify"
-import { EDIT_PASSWORD, FAIL_USER, LOAD_USER, LOGIN, LOGOUT, REGISTER } from "../ActionType/ActionType"
+import { CURRENT, EDIT_PASSWORD, FAIL_USER, LOAD_USER, LOGIN, LOGOUT, REGISTER } from "../ActionType/ActionType"
 
 
 //initialState
@@ -34,8 +34,10 @@ const userReducer=(state=initialState,{type,payload})=>{
             toast()
             return{...state,load:false}
         case LOGOUT:
-            localStorage.setItem("token","")
+            localStorage.removeItem("token")
             return{...state,user:payload}  
+        case CURRENT:
+            return{...state,user:payload,load:false}
         default:
             return state
     }

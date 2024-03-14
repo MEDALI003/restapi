@@ -1,4 +1,4 @@
-import { EDIT_PASSWORD, FAIL_USER, LOAD_USER, LOGIN, LOGOUT, REGISTER } from "../ActionType/ActionType"
+import { CURRENT, EDIT_PASSWORD, FAIL_USER, LOAD_USER, LOGIN, LOGOUT, REGISTER } from "../ActionType/ActionType"
 import axios from 'axios';
 
 export const register=(newUser)=>async(dispatch)=>{
@@ -17,7 +17,6 @@ export const login=(user)=>async(dispatch)=>{
     dispatch({type:LOAD_USER})
     try {
         let result= await axios.post("http://localhost:8000/api/user/login",user)
-        console.log(result)
         dispatch({type:LOGIN,payload:result.data})
     } catch (error) {
     
@@ -40,6 +39,18 @@ export const logout=()=>{
     type:LOGOUT,
     payload:null
    }
+}
+export const current=()=>async(dispatch)=>{
+    dispatch({type:LOAD_USER})
+    try {
+        const config = {
+            headers: {authorization: localStorage.getItem('token')}
+        }
+        const res=await axios.get("http://localhost:8000/api/user/current",config)
+        dispatch({type:CURRENT,payload:res.data})
+    } catch (error) {
+       console.log(error)
+    }
 }
 
 

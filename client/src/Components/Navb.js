@@ -46,6 +46,7 @@ function Navb() {
             </NavDropdown>
           </Nav>
         </Navbar.Collapse>
+        <h1>{conn?.name}</h1>
       </Container>
     </Navbar>
   );
